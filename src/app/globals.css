@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Оптимизация шрифтов */
+@layer base {
+  * {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-display: swap;
+  }
+  
+  .font-mono, 
+  code, 
+  pre {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+    font-feature-settings: "liga" 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-roboto), Roboto, var(--font-inter), Inter, system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+/* ПОСТОЯННО ВИДИМЫЕ СКРОЛЛБАРЫ - БЕЗ АВТОСКРЫТИЯ */
+
+/* Обычные скроллбары для html и body */
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af #f1f5f9;
+}
+
+/* УМНЫЕ СКРОЛЛБАРЫ ДЛЯ ТАБЛИЦЫ - ПОКАЗЫВАТЬ ТОЛЬКО ПРИ НЕОБХОДИМОСТИ */
+.ultimate-scrollbars {
+  /* ОСНОВА - автоматический overflow */
+  overflow: auto !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  
+  /* Firefox - показывать скроллбары только при необходимости */
+  scrollbar-width: auto !important;
+  scrollbar-color: #374151 #e5e7eb !important;
+  
+  /* Улучшенная прокрутка в WebKit */
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* WEBKIT/CHROME - ВСЕГДА ВИДИМЫЕ СКРОЛЛБАРЫ */
+.ultimate-scrollbars::-webkit-scrollbar {
+  /* ОБЯЗАТЕЛЬНЫЕ размеры и видимость */
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+  
+  /* Отключаем системные стили автоскрытия */
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  
+  /* Фон всегда видимый */
+  background: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.ultimate-scrollbars::-webkit-scrollbar-track {
+  /* Трек всегда видимый */
+  background: #f9fafb !important;
+  border: none !important;
+  border-radius: 0 !important;
+  
+  /* Убираем тени, которые могут скрывать */
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.ultimate-scrollbars::-webkit-scrollbar-thumb {
+  /* Темный ползунок всегда видимый */
+  background: #374151 !important;
+  border: 2px solid #f3f4f6 !important;
+  border-radius: 4px !important;
+  
+  /* Обязательные размеры */
+  min-height: 30px !important;
+  min-width: 30px !important;
+  
+  /* НЕ ИСПОЛЬЗУЕМ hover/active состояния для постоянной видимости */
+}
+
+.ultimate-scrollbars::-webkit-scrollbar-thumb:hover {
+  background: #1f2937 !important;
+}
+
+.ultimate-scrollbars::-webkit-scrollbar-thumb:active {
+  background: #111827 !important;
+}
+
+.ultimate-scrollbars::-webkit-scrollbar-corner {
+  background: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+/* КОНТЕЙНЕР ТАБЛИЦЫ - УМНЫЙ OVERFLOW */
+#table-container {
+  /* Основные стили overflow - показывать только при необходимости */
+  overflow: auto !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  
+  /* Firefox - показывать при необходимости */
+  scrollbar-width: auto !important;
+  scrollbar-color: #374151 #e5e7eb !important;
+  
+  /* WebKit - улучшенная прокрутка */
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* ДОПОЛНИТЕЛЬНЫЙ ХАК ДЛЯ CHROME */
+.force-visible-scrollbars {
+  /* Принудительная видимость через содержимое */
+  position: relative !important;
+}
+
+/* Убираем псевдоэлементы-индикаторы - больше не нужны */
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: #fafbfc !important;
+  color: #1a1a1a !important;
+}
